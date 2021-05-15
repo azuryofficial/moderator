@@ -3,7 +3,7 @@ from discord.ext import commands
 
 
 class Commands(commands.Cog):
-    def __init__(self, bot: commands.Bot):
+    def __init__(self, bot: commands.Bot) -> None:
         self.bot: commands.Bot = bot
 
     @commands.command()
