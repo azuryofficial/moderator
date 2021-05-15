@@ -19,9 +19,9 @@ class Commands(commands.Cog):
     @commands.command()
     @commands.has_permissions(ban_members=True)
     async def unban(self, ctx: commands.Context, *, member: str) -> None:
-        bans: list[discord.Member] = await ctx.guild.bans()
+        banned_user: list[discord.Member] = await ctx.guild.bans()
 
-        for ban in bans:
-            if (ban.user.name, ban.user.discriminator) == (*member.split("#"),):
-                await ban.unban()
+        for user in banned_user:
+            if (user.user.name, user.user.discriminator) == (*member.split("#"),):
+                await user.unban()
                 break
