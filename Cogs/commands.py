@@ -8,20 +8,20 @@ class Commands(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(kick_members=True)
-    async def kick(self, ctx: commands.Context, user: discord.Member, *, reason: str = None) -> None:
-        await user.kick(reason=reason)
+    async def kick(self, ctx: commands.Context, member: discord.Member, *, reason: str = None) -> None:
+        await member.kick(reason=reason)
 
     @commands.command()
     @commands.has_permissions(ban_members=True)
-    async def ban(self, ctx: commands.Context, user: discord.Member, *, reason: str = None) -> None:
-        await user.ban(reason=reason)
+    async def ban(self, ctx: commands.Context, member: discord.Member, *, reason: str = None) -> None:
+        await member.ban(reason=reason)
 
     @commands.command()
     @commands.has_permissions(ban_members=True)
-    async def unban(self, ctx: commands.Context, *, user: str) -> None:
+    async def unban(self, ctx: commands.Context, *, member: str) -> None:
         bans: list[discord.Member] = await ctx.guild.bans()
 
         for ban in bans:
-            if (ban.user.name, ban.user.discriminator) == (*user.split("#"),):
+            if (ban.user.name, ban.user.discriminator) == (*member.split("#"),):
                 await ban.unban()
                 break
