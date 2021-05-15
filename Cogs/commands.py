@@ -10,3 +10,8 @@ class Commands(commands.Cog):
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx: commands.Context, user: discord.Member, *, reason: str = None) -> None:
         await user.kick(reason=reason)
+
+    @commands.command()
+    @commands.has_permissions(ban_members=True)
+    async def ban(self, ctx: commands.Context, user: discord.Member, *, reason: str = None) -> None:
+        await user.ban(reason=reason)
