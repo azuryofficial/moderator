@@ -1,1 +1,1 @@
-from Cogs.commands import Commands
+from Cogs.moderate import Kick, Ban
