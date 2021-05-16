@@ -6,6 +6,6 @@ class Embed:
         self.embed = {"color:": color, "description": description}
 
 
-class KickEmbed:
+class KickEmbed(Embed):
     def __init__(self, member: discord.Member) -> None:
-        self.embed = {"color": 15105570, "description": f"Kicked {member.mention}"}
+        super().__init__(15105570, f"Kicked {member.mention}")
