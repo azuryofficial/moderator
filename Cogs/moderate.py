@@ -1,8 +1,6 @@
 import discord
 from discord.ext import commands
 
-import embeds
-
 
 class Kick(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
@@ -12,7 +10,7 @@ class Kick(commands.Cog):
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx: commands.Context, member: discord.Member, *, reason: str = None) -> None:
         await member.kick(reason=reason)
-        await ctx.send(embed=discord.Embed().from_dict(embeds.KickEmbed(member).embed))
+        await ctx.send(embed=discord.Embed(color=discord.Color.orange(), description=f"Kicked {member.mention}"))
 
 
 class Ban(commands.Cog):
