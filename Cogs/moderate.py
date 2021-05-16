@@ -31,6 +31,7 @@ class Ban(commands.Cog):
         for user in banned_user:
             if (user.user.name, user.user.discriminator) == (*member.split("#"),):
                 await user.unban()
+                await ctx.send(embed=discord.Embed(color=discord.Color.green(), description=f"Unbanned {user.mention}"))
                 break
 
 
