@@ -1,3 +1,5 @@
+import asyncio
+
 import discord
 from discord.ext import commands
 
@@ -51,8 +53,11 @@ class Mute(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(kick_members=True)
-    async def mute(self, ctx: commands.Context, member: discord.Member, *, reason: str = None) -> None:
-        await member.add_roles(await commands.RoleConverter().convert(ctx, "Muted"), reason=reason)
+    async def mute(self, ctx: commands.Context, member: discord.Member, delay: int = 1, *, reason: str = None) -> None:
+        role: discord.Role = await commands.RoleConverter().convert(ctx, "Muted")
+        await member.add_roles(role, reason=reason)
+        await asyncio.sleep(delay * 60)
+        await member.remove_roles(role)
 
     @mute.error
     async def mute_error(self, ctx: commands.Context, error) -> None:
