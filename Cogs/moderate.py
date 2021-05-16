@@ -53,3 +53,8 @@ class Mute(commands.Cog):
     @commands.has_permissions(kick_members=True)
     async def mute(self, ctx: commands.Context, member: discord.Member, *, reason: str = None) -> None:
         await member.add_roles(await commands.RoleConverter().convert(ctx, "Muted"), reason=reason)
+
+    @mute.error
+    async def mute_error(self, ctx: commands.Context, error) -> None:
+        if isinstance(error, commands.RoleNotFound):
+            await ctx.guild.create_role(name="Muted")
