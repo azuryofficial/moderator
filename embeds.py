@@ -9,3 +9,8 @@ class Embed:
 class KickEmbed(Embed):
     def __init__(self, member: discord.Member) -> None:
         super().__init__(15105570, f"Kicked {member.mention}")
+
+
+class BanEmbed(Embed):
+    def __init__(self, member: discord.Member) -> None:
+        super().__init__(15158332, f"Banned {member.mention}")
