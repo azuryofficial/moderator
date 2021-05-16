@@ -21,6 +21,7 @@ class Ban(commands.Cog):
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx: commands.Context, member: discord.Member, *, reason: str = None) -> None:
         await member.ban(reason=reason)
+        await ctx.send(embed=discord.Embed(color=discord.Color.red(), description=f"Banned {member.mention}"))
 
     @commands.command()
     @commands.has_permissions(ban_members=True)
