@@ -3,7 +3,7 @@ import asyncio
 import discord
 from discord.ext import commands
 
-from embeds import KickEmbed, UnbanEmbed
+from embeds import KickEmbed, BanEmbed, UnbanEmbed
 
 
 class Kick(commands.Cog):
@@ -25,7 +25,7 @@ class Ban(commands.Cog):
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx: commands.Context, member: discord.Member, *, reason: str = None) -> None:
         await member.ban(reason=reason)
-        await ctx.send(embed=discord.Embed(color=discord.Color.red(), description=f"Banned {member.mention}"))
+        await ctx.send(embed=BanEmbed(member))
 
     @commands.command()
     @commands.has_permissions(ban_members=True)
