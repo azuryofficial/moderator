@@ -9,3 +9,8 @@ class Embed(discord.Embed):
 class CommandEmbed(Embed):
     def __init__(self, method: str, member: discord.Member) -> None:
         super().__init__("", f"{method} {member.mention}", discord.Color.orange())
+
+
+class ErrorEmbed(Embed):
+    def __init__(self, description: str) -> None:
+        super().__init__(":x: Error", description, discord.Color.red())
