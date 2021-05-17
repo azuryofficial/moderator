@@ -61,12 +61,3 @@ class Mute(commands.Cog):
         await member.add_roles(role, reason=reason)
         await asyncio.sleep(delay * 60)
         await member.remove_roles(role)
-
-    @mute.error
-    async def mute_error(self, ctx: commands.Context, error) -> None:
-        if isinstance(error, commands.RoleNotFound):
-            await ctx.send(embed=discord.Embed(color=discord.Color.red(),
-                                               description="Missing Role created. Try again."))
-            await ctx.guild.create_role(name="Muted",
-                                        permissions=discord.Permissions(read_message_history=True, read_messages=True),
-                                        reason="Automatic created Role for mute command.")
