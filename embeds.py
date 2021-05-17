@@ -8,7 +8,7 @@ class Embed(discord.Embed):
 
 class CommandEmbed(Embed):
     def __init__(self, method: str, member: discord.Member) -> None:
-        super().__init__("", f"{method} {member.mention}", discord.Color.orange())
+        super().__init__(":white_check_mark: Success", f"{method} {member.mention}", discord.Color.green())
 
 
 class ErrorEmbed(Embed):
