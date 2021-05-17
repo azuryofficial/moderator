@@ -7,6 +7,7 @@ class Error(commands.Cog):
     async def on_command_error(self, ctx: commands.Context, error) -> None:
         if isinstance(error, commands.RoleNotFound):
             if "Muted" in error:
-                ctx.guild.create_role(name="Muted",
-                                      permissions=discord.Permissions(read_message_history=True, read_messages=True),
-                                      reason="Automatically created role for mute command.")
+                await ctx.guild.create_role(name="Muted",
+                                            permissions=discord.Permissions(read_message_history=True,
+                                                                            read_messages=True),
+                                            reason="Automatically created role for mute command.")
