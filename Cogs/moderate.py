@@ -3,7 +3,7 @@ import asyncio
 import discord
 from discord.ext import commands
 
-from embeds import KickEmbed
+from embeds import KickEmbed, BanEmbed
 
 
 class Kick(commands.Cog):
@@ -35,7 +35,7 @@ class Ban(commands.Cog):
         for user in banned_user:
             if (user.user.name, user.user.discriminator) == (*member.split("#"),):
                 await user.unban()
-                await ctx.send(embed=discord.Embed(color=discord.Color.green(), description=f"Unbanned {user.mention}"))
+                await ctx.send(embed=BanEmbed(user))
                 break
 
 
