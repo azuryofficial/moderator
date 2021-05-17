@@ -19,3 +19,8 @@ class BanEmbed(Embed):
 class UnbanEmbed(Embed):
     def __init__(self, member: discord.Member) -> None:
         super().__init__("", f"Unbanned {member.mention}", discord.Color.orange())
+
+
+class MuteEmbed(Embed):
+    def __init__(self, member: discord.Member) -> None:
+        super().__init__("", f"Muted {member.mention}", discord.Color.orange())
