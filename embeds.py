@@ -7,12 +7,12 @@ class Embed(discord.Embed):
 
 
 class KickEmbed(Embed):
-    def __init__(self, member: discord.Member):
+    def __init__(self, member: discord.Member) -> None:
         super().__init__("", f"Kicked {member.mention}", discord.Color.orange())
 
 
 class BanEmbed(Embed):
-    def __init__(self, member: discord.Member):
+    def __init__(self, member: discord.Member) -> None:
         super().__init__("", f"Banned {member.mention}", discord.Color.orange())
 
 
