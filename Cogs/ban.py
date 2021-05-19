@@ -12,7 +12,7 @@ class Ban(commands.Cog):
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx: commands.Context, member: discord.Member, *, reason: str = None) -> None:
         await member.ban(reason=reason)
-        await ctx.send(embed=CommandEmbed("Banned", member))
+        await ctx.send(embed=CommandEmbed(":no_entry: Banned", member))
 
     @commands.command()
     @commands.has_permissions(ban_members=True)
