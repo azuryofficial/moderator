@@ -20,7 +20,7 @@ class Embed:
 
 class CommandEmbed(Embed):
     def __init__(self, title: str, member: discord.Member) -> None:
-        super().__init__(f"{title}", f"{member.mention}", discord.Color.green())
+        super().__init__(f"{title}", "", discord.Color.green(), member)
 
 
 class ErrorEmbed(Embed):
