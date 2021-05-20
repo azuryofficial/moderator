@@ -5,7 +5,7 @@ class Embed(discord.Embed):
     def __init__(self, title: str, description: str, color: discord.Color, member: discord.Member = None) -> None:
         self.embed: dict = {
             "author": {
-                "name": member.display_name if member else "",
+                "name": f"{member.name}#{member.discriminator}" if member else "",
                 "icon_url": str(member.avatar_url) if member else "",
             },
             "title": title,
