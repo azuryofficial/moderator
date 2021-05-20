@@ -22,5 +22,5 @@ class Ban(commands.Cog):
         for user in banned_user:
             if (user.user.name, user.user.discriminator) == (*member.split("#"),):
                 await user.unban()
-                await ctx.send(embed=CommandEmbed(":clap: Unbanned", user))
+                await ctx.send(embed=CommandEmbed(":wave: Unbanned", user))
                 break
