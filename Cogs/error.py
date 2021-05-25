@@ -26,3 +26,6 @@ class Error(commands.Cog):
                                             permissions=discord.Permissions(read_message_history=True,
                                                                             read_messages=True),
                                             reason="Automatically created role for mute command.")
+
+        else:
+            logging.error(error)
