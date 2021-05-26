@@ -3,7 +3,7 @@ import logging
 import discord
 from discord.ext import commands
 
-from embeds import ErrorEmbed
+from utils.embeds import ErrorEmbed
 
 
 class Error(commands.Cog):
