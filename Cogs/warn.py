@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-from utils.embeds import CommandEmbed
+from misc.embeds import CommandEmbed
 
 
 class Warn(commands.Cog):
