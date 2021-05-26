@@ -1,1 +1,1 @@
-from utils.embeds import CommandEmbed, ErrorEmbed
+from .embeds import CommandEmbed, ErrorEmbed
