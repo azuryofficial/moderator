@@ -5,7 +5,6 @@ name = "pypi"
 
 [packages]
 motor = "*"
-dnspython = "*"
 discord = {py = "*"}
 python-dotenv = "*"
 
