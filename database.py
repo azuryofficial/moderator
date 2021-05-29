@@ -1,3 +1,5 @@
+import logging
+
 import motor.motor_asyncio as motor
 import pymongo.errors as pymongo
 from dotenv import dotenv_values
@@ -10,4 +12,4 @@ async def setup(db: motor.AsyncIOMotorDatabase, collections: list[str]) -> None:
         try:
             await db.create_collection(collection)
         except pymongo.CollectionInvalid:
-            continue
+            logging.error(f"Collection already exists: {collection}")
