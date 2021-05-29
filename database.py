@@ -1,6 +1,5 @@
 import logging
 
-import discord
 import motor.motor_asyncio as motor
 import pymongo.errors as pymongo
 from dotenv import dotenv_values
