@@ -7,8 +7,8 @@ from dotenv import dotenv_values
 CLIENT: motor.AsyncIOMotorClient = motor.AsyncIOMotorClient(dotenv_values(".env")["DB"])
 
 
-async def setup(db: motor.AsyncIOMotorDatabase, collections: list[str]) -> None:
-    for collection in collections:
+async def setup(db: motor.AsyncIOMotorDatabase) -> None:
+    for collection in ["users", "bans", "kicks", "mutes", "warns"]:
         try:
             await db.create_collection(collection)
         except pymongo.CollectionInvalid:
