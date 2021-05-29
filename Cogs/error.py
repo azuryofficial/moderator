@@ -19,7 +19,7 @@ class Error(commands.Cog):
                 await ctx.send(embed=ErrorEmbed("You have to specify a member."))
 
         elif isinstance(error, commands.RoleNotFound):
-            logging.error(f"RequiredRoleNotFound: {error.args[0]}")
+            logging.error(f"The role {error.args[0].split()[1]} did not exist and was automatically created")
             await ctx.send(embed=ErrorEmbed("Missing role was automatically created. Try again."))
             if "Muted" in error.args[0]:
                 await ctx.guild.create_role(name="Muted",
