@@ -2,4 +2,3 @@ Pipfile.lock
 .env
 *.log
 .idea
-LICENSE
