@@ -10,7 +10,7 @@ class Error(commands.Cog):
     @commands.Cog.listener()
     async def on_command_error(self, ctx: commands.Context, error) -> None:
         if isinstance(error, commands.CommandNotFound):
-            logging.warning(f"CommandNotFound: {error.args[0]}")
+            logging.error(f"The {error.args[0].split()[1]} command does not exist")
             await ctx.send(embed=ErrorEmbed("This command does not exist."))
 
         elif isinstance(error, commands.MissingRequiredArgument):
