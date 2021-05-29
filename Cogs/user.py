@@ -13,4 +13,4 @@ class User(commands.Cog):
             "_id": member.id,
             "joined_at": member.joined_at,
         }
-        await db["user"].insert_one(user_document)
+        await db["users"].insert_one(user_document)
