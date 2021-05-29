@@ -9,8 +9,9 @@ class User(commands.Cog):
 
     @staticmethod
     async def _add_user(db: motor.AsyncIOMotorCollection, member: discord.Member) -> None:
-        user_document: dict = {
-            "_id": member.id,
-            "joined_at": member.joined_at,
-        }
-        await db["users"].insert_one(user_document)
+        if not await db["users"].find_one({"_id": member.id}):
+            user_document: dict = {
+                "_id": member.id,
+                "joined_at": member.joined_at,
+            }
+            await db["users"].insert_one(user_document)
