@@ -8,9 +8,9 @@ class User(commands.Cog):
         self.bot: commands.Bot = bot
 
     @staticmethod
-    async def _add_user(collection: motor.AsyncIOMotorCollection, member: discord.Member) -> None:
+    async def _add_user(db: motor.AsyncIOMotorCollection, member: discord.Member) -> None:
         user_document: dict = {
             "_id": member.id,
             "joined_at": member.joined_at,
         }
-        await collection.insert_one(user_document)
+        await db["user"].insert_one(user_document)
