@@ -14,7 +14,7 @@ class Error(commands.Cog):
             await ctx.send(embed=ErrorEmbed("This command does not exist."))
 
         elif isinstance(error, commands.MissingRequiredArgument):
-            logging.error(f"MissingRequiredArgument: {error.args[0]}")
+            logging.info(f"The '{ctx.command}' command requires the  missing argument '{error.args[0].split()[0]}'")
             if "member" in error.args[0]:
                 await ctx.send(embed=ErrorEmbed("You have to specify a member."))
 
