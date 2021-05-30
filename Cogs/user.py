@@ -4,8 +4,9 @@ from discord.ext import commands
 
 
 class User(commands.Cog):
-    def __init__(self, bot: commands.Bot) -> None:
+    def __init__(self, bot: commands.Bot, db: motor.AsyncIOMotorDatabase) -> None:
         self.bot: commands.Bot = bot
+        self.db: motor.AsyncIOMotorDatabase = db
 
     async def add_user(self, db: motor.AsyncIOMotorDatabase, member: discord.Member) -> None:
         if not await self.user_exists(db, member):
