@@ -5,7 +5,7 @@ from dotenv import dotenv_values
 
 from misc.database import CLIENT
 
-from Cogs import Kick, Ban, Mute, Error, Warn
+from Cogs import Kick, Ban, Mute, Error, Warn, User
 
 bot: commands.Bot = commands.Bot("m.")
 bot.remove_command("help")
@@ -14,6 +14,7 @@ bot.add_cog(Kick(bot, CLIENT.test))
 bot.add_cog(Ban(bot, CLIENT.test))
 bot.add_cog(Mute(bot, CLIENT.test))
 bot.add_cog(Warn(bot, CLIENT.test))
+bot.add_cog(User(bot, CLIENT.test))
 bot.add_cog(Error())
 
 if __name__ == "__main__":
