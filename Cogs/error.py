@@ -27,5 +27,9 @@ class Error(commands.Cog):
                                                                             read_messages=True),
                                             reason="Automatically created role for mute command.")
 
+        elif isinstance(error, commands.MemberNotFound):
+            logging.info(f"The member {error.args[0]} was not found.")
+            await ctx.send(embed=ErrorEmbed("The member is not on this server."))
+
         else:
             logging.error(error)
