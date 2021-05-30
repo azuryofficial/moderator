@@ -2,8 +2,8 @@ import discord
 import motor.motor_asyncio as motor
 from discord.ext import commands
 
-from misc.embeds import CommandEmbed
 from misc import add_entry
+from misc.embeds import CommandEmbed
 
 
 class Ban(commands.Cog):
