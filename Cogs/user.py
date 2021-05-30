@@ -8,8 +8,9 @@ class User(commands.Cog):
         self.bot: commands.Bot = bot
         self.db: motor.AsyncIOMotorDatabase = db
 
-    async def add_user(self, db: motor.AsyncIOMotorDatabase, member: discord.Member) -> None:
-        if not await self.user_exists(db, member):
+    @staticmethod
+    async def add_user(db: motor.AsyncIOMotorDatabase, member: discord.Member) -> None:
+        if await db["users"].find_one({"_id": member.id}) is not None:
             user_document: dict = {"_id": member.id}
             await db["users"].insert_one(user_document)
 
