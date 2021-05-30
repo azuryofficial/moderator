@@ -34,4 +34,8 @@ async def add_entry(db: motor.AsyncIOMotorDatabase, collection: str, ctx: comman
 
 async def add_user(db: motor.AsyncIOMotorDatabase, member: discord.Member) -> None:
     if await db["users"].find_one({"_id": member.id}) is None:
-        await db["users"].insert_one({"_id": member.id})
+        document: dict = {
+            "_id": member.id,
+            "name": f"{member.name}#{member.discriminator}",
+        }
+        await db["users"].insert_one(document)
