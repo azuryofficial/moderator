@@ -3,6 +3,7 @@ import motor.motor_asyncio as motor
 from discord.ext import commands
 
 from misc.embeds import CommandEmbed
+from misc import add_entry
 
 
 class Ban(commands.Cog):
@@ -15,6 +16,7 @@ class Ban(commands.Cog):
     async def ban(self, ctx: commands.Context, member: discord.Member, *, reason: str = None) -> None:
         await member.ban(reason=reason)
         await ctx.send(embed=CommandEmbed(":no_entry: Banned", member))
+        await add_entry(self.db, "bans", ctx, member, reason)
 
     @commands.command()
     @commands.has_permissions(ban_members=True)
