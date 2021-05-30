@@ -12,3 +12,7 @@ class User(commands.Cog):
         if not await db["users"].find_one({"_id": member.id}):
             user_document: dict = {"_id": member.id}
             await db["users"].insert_one(user_document)
+
+    @staticmethod
+    async def user_exists(db: motor.AsyncIOMotorDatabase, member: discord.Member) -> bool:
+        return await db["users"].find_one({"_id": member.id}) is not None
