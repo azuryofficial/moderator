@@ -6,7 +6,6 @@ import pymongo.errors as pymongo
 from discord.ext import commands
 from dotenv import dotenv_values
 
-
 CLIENT: motor.AsyncIOMotorClient = motor.AsyncIOMotorClient(dotenv_values(".env")["DB"])
 
 
