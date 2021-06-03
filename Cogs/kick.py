@@ -16,4 +16,4 @@ class Kick(commands.Cog):
     async def kick(self, ctx: commands.Context, member: discord.Member, *, reason: str = None) -> None:
         await member.kick(reason=reason)
         await ctx.send(embed=CommandEmbed(":door: Kicked", member))
-        await add_entry(self.db, "kicks", ctx, member, reason)
+        await add_entry(self.db, "kicks", ctx.message.author, member, reason)

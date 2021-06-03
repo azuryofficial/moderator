@@ -16,7 +16,7 @@ class Ban(commands.Cog):
     async def ban(self, ctx: commands.Context, member: discord.Member, *, reason: str = None) -> None:
         await member.ban(reason=reason)
         await ctx.send(embed=CommandEmbed(":no_entry: Banned", member))
-        await add_entry(self.db, "bans", ctx, member, reason)
+        await add_entry(self.db, "bans", ctx.message.author, member, reason)
 
     @commands.command()
     @commands.has_permissions(ban_members=True)

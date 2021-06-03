@@ -15,4 +15,4 @@ class Warn(commands.Cog):
     @commands.has_permissions(kick_members=True)
     async def warn(self, ctx: commands.Context, member: discord.Member, *, reason: str = None) -> None:
         await ctx.send(embed=CommandEmbed(":warning: Warned", member))
-        await add_entry(self.db, "warns", ctx, member, reason)
+        await add_entry(self.db, "warns", ctx.message.author, member, reason)
