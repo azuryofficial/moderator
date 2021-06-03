@@ -5,4 +5,4 @@ from .kick import Kick
 from .mute import Mute
 from .setup import Setup
 from .user import User
-from .warn import Warn
+from .warn import Warn, warn
