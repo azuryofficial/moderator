@@ -1,4 +1,5 @@
 from .ban import Ban
+from .censor import Censor
 from .error import Error
 from .kick import Kick
 from .mute import Mute
