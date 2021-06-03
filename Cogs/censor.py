@@ -1,7 +1,7 @@
 import motor.motor_asyncio as motor
 from discord.ext import commands
 
-from misc import ErrorEmbed, add_word
+from misc import ErrorEmbed, add_word, delete_word
 
 
 class Censor(commands.Cog):
@@ -14,3 +14,9 @@ class Censor(commands.Cog):
     async def censor(self, ctx: commands.Context, *, word: str) -> None:
         if not await add_word(self.db, word):
             await ctx.send(embed=ErrorEmbed("Word is already censored."))
+
+    @commands.command()
+    @commands.has_permissions(kick_members=True)
+    async def permit(self, ctx: commands.Context, *, word: str) -> None:
+        if not await delete_word(self.db, word):
+            await ctx.send(embed=ErrorEmbed("The word is not censored."))
