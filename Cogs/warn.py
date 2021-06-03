@@ -1,3 +1,6 @@
+import collections
+from typing import Union
+
 import discord
 import motor.motor_asyncio as motor
 from discord.ext import commands
@@ -6,8 +9,8 @@ from misc import add_entry
 from misc.embeds import CommandEmbed
 
 
-async def _warn(db: motor.AsyncIOMotorDatabase, author: discord.Member, member: discord.Member,
-                reason: str) -> None:
+async def _warn(db: motor.AsyncIOMotorDatabase, author: Union[discord.Member, collections.namedtuple],
+                member: discord.Member, reason: str) -> None:
     await add_entry(db, "warns", author, member, reason)
 
 
