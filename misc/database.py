@@ -39,3 +39,11 @@ async def add_user(db: motor.AsyncIOMotorDatabase, member: discord.Member) -> No
             "name": f"{member.name}#{member.discriminator}",
         }
         await db["users"].insert_one(document)
+
+
+async def add_word(db: motor.AsyncIOMotorDatabase, word: str) -> bool:
+    try:
+        await db["censored"].insert_one({"_id": word})
+    except pymongo.DuplicateKeyError:
+        return False
+    return True
