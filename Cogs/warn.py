@@ -6,8 +6,8 @@ from misc import add_entry
 from misc.embeds import CommandEmbed
 
 
-async def warn(db: motor.AsyncIOMotorDatabase, author: discord.Member, member: discord.Member,
-               reason: str) -> None:
+async def _warn(db: motor.AsyncIOMotorDatabase, author: discord.Member, member: discord.Member,
+                reason: str) -> None:
     await add_entry(db, "warns", author, member, reason)
 
 
@@ -20,4 +20,4 @@ class Warn(commands.Cog):
     @commands.has_permissions(kick_members=True)
     async def warn(self, ctx: commands.Context, member: discord.Member, *, reason: str = None) -> None:
         await ctx.send(embed=CommandEmbed(":warning: Warned", member))
-        await warn(self.db, ctx.message.author, member, reason)
+        await _warn(self.db, ctx.message.author, member, reason)
