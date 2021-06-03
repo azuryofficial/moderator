@@ -16,3 +16,8 @@ class Warn(commands.Cog):
     async def warn(self, ctx: commands.Context, member: discord.Member, *, reason: str = None) -> None:
         await ctx.send(embed=CommandEmbed(":warning: Warned", member))
         await add_entry(self.db, "warns", ctx.message.author, member, reason)
+
+    @staticmethod
+    async def _warn(db: motor.AsyncIOMotorDatabase, author: discord.Member, member: discord.Member,
+                    reason: str) -> None:
+        await add_entry(db, "warns", author, member, reason)
