@@ -50,8 +50,7 @@ async def add_word(db: motor.AsyncIOMotorDatabase, word: str) -> bool:
 
 
 async def delete_word(db: motor.AsyncIOMotorDatabase, word: str) -> bool:
-    try:
+    if await db["censored"].find_one({"_id": word}):
         await db["censored"].delete_one({"_id": word})
-    except pymongo.DuplicateKeyError:
-        return False
-    return True
+        return True
+    return False
