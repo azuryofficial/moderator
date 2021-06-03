@@ -43,14 +43,14 @@ async def add_user(db: motor.AsyncIOMotorDatabase, member: discord.Member) -> No
 
 async def add_word(db: motor.AsyncIOMotorDatabase, word: str) -> bool:
     try:
-        await db["censored"].insert_one({"_id": word})
+        await db["censored"].insert_one({"_id": word.lower()})
     except pymongo.DuplicateKeyError:
         return False
     return True
 
 
 async def delete_word(db: motor.AsyncIOMotorDatabase, word: str) -> bool:
-    if await db["censored"].find_one({"_id": word}):
-        await db["censored"].delete_one({"_id": word})
+    if await db["censored"].find_one({"_id": word.lower()}):
+        await db["censored"].delete_one({"_id": word.lower()})
         return True
     return False
