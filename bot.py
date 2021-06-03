@@ -13,7 +13,7 @@ add_cogs(CLIENT.test, bot, [Kick, Ban, Mute, Warn, User, Setup, Censor])
 bot.add_cog(Error())
 
 if __name__ == "__main__":
-    logging.basicConfig(filename="log.log", format="[%(asctime)s]:%(levelname)s:%(message)s",
+    logging.basicConfig(filename="log.log", format="[%(asctime)s]:[%(levelname)s]:%(message)s",
                         datefmt="%H:%M:%S %d.%m.%Y", level=logging.WARNING)
 
     bot.run(dotenv_values(".env")["TOKEN"])
