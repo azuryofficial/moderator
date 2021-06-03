@@ -1,4 +1,5 @@
 import logging
+from datetime import datetime
 
 import discord
 import motor.motor_asyncio as motor
@@ -18,16 +19,16 @@ async def setup(db: motor.AsyncIOMotorDatabase) -> None:
             continue
 
 
-async def add_entry(db: motor.AsyncIOMotorDatabase, collection: str, ctx: commands.Context, member: discord.Member,
+async def add_entry(db: motor.AsyncIOMotorDatabase, collection: str, author: discord.Member, member: discord.Member,
                     reason: str) -> None:
     await add_user(db, member)
-    await add_user(db, ctx.message.author)
+    await add_user(db, author)
 
     document: dict = {
         "member_id": member.id,
         "reason": reason,
-        "reporter": ctx.message.author.id,
-        "timestamp": ctx.message.created_at,
+        "reporter": author,
+        "timestamp": datetime.now(),
     }
     db[collection].insert_one(document)
 
