@@ -14,7 +14,7 @@ async def setup(db: motor.AsyncIOMotorDatabase) -> None:
         try:
             await db.create_collection(collection)
         except pymongo.CollectionInvalid:
-            logging.error(f"Collection already exists: {collection}")
+            logging.warning(f"Collection already exists: {collection}")
             continue
 
 
