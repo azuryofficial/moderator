@@ -4,7 +4,6 @@ from datetime import datetime
 import discord
 import motor.motor_asyncio as motor
 import pymongo.errors as pymongo
-from discord.ext import commands
 from dotenv import dotenv_values
 
 CLIENT: motor.AsyncIOMotorClient = motor.AsyncIOMotorClient(dotenv_values(".env")["DB"])
@@ -27,7 +26,7 @@ async def add_entry(db: motor.AsyncIOMotorDatabase, collection: str, author: dis
     document: dict = {
         "member_id": member.id,
         "reason": reason,
-        "reporter": author,
+        "reporter": author.id,
         "timestamp": datetime.now(),
     }
     db[collection].insert_one(document)
