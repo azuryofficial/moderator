@@ -23,7 +23,7 @@ class Ban(commands.Cog):
         await ctx.send(embed=CommandEmbed(replace_placeholders(COMMANDS["BAN"].title, replacement),
                                           replace_placeholders(COMMANDS["BAN"].description, replacement),
                                           member))
-        await add_entry(self.db, "bans", ctx.message.author, member, reason)
+        await add_entry(self.db, COMMANDS["BAN"].collection, ctx.message.author, member, reason)
         await asyncio.sleep(86400 * time)
         await member.unban()
 
