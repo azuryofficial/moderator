@@ -15,3 +15,5 @@ def _get_config() -> str:
 
 CONFIG: config.ConfigParser = config.ConfigParser()
 CONFIG.read(_get_config())
+
+DATABASE: config.SectionProxy = CONFIG["Database"]
