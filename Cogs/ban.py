@@ -4,8 +4,8 @@ import discord
 import motor.motor_asyncio as motor
 from discord.ext import commands
 
-from misc import add_entry
-from misc.embeds import CommandEmbed
+from misc import CommandEmbed, add_entry, replace_placeholders
+from misc.config import COMMANDS
 
 __all__: list[str] = ["Ban"]
 
@@ -19,7 +19,10 @@ class Ban(commands.Cog):
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx: commands.Context, member: discord.Member, time: int, *, reason: str = None) -> None:
         await member.ban(reason=reason)
-        await ctx.send(embed=CommandEmbed(":no_entry: Banned", member))
+        replacement: dict = {"{member}": str(member), "{mention}": member.mention}
+        await ctx.send(embed=CommandEmbed(replace_placeholders(COMMANDS["BAN"].title, replacement),
+                                          replace_placeholders(COMMANDS["BAN"].description, replacement),
+                                          member))
         await add_entry(self.db, "bans", ctx.message.author, member, reason)
         await asyncio.sleep(86400 * time)
         await member.unban()
