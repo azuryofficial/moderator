@@ -33,8 +33,9 @@ class Error(commands.Cog):
                                             reason="Automatically created role for mute command.")
 
         elif isinstance(error, commands.MemberNotFound):
-            logging.warning(f"The member {error.args[0]} was not found.")
-            await ctx.send(embed=ErrorEmbed("The member is not on this server."))
+            replacement: dict = {"{member}": error.args[0]}
+            logging.warning(replace_placeholders(ERRORS["MNF"].log, replacement))
+            await ctx.send(embed=ErrorEmbed(replace_placeholders(ERRORS["MNF"].embed, replacement)))
 
         else:
             logging.error(error)
