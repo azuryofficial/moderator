@@ -5,7 +5,7 @@ import discord
 import motor.motor_asyncio as motor
 import pymongo.errors as pymongo
 
-from misc.config import DATABASE
+from misc.config import DATABASE, COMMANDS
 
 CLIENT: motor.AsyncIOMotorClient = motor.AsyncIOMotorClient(DATABASE.address)
 
@@ -34,12 +34,12 @@ async def add_entry(db: motor.AsyncIOMotorDatabase, collection: str, author: dis
 
 
 async def add_user(db: motor.AsyncIOMotorDatabase, member: discord.Member) -> None:
-    if await db["users"].find_one({"_id": member.id}) is None:
+    if await db[COMMANDS["User"].collection].find_one({"_id": member.id}) is None:
         document: dict = {
             "_id": member.id,
             "name": f"{member.name}#{member.discriminator}",
         }
-        await db["users"].insert_one(document)
+        await db[COMMANDS["User"].collection].insert_one(document)
 
 
 async def add_word(db: motor.AsyncIOMotorDatabase, word: str) -> bool:
