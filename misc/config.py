@@ -1,5 +1,6 @@
 import configparser as config
 import pathlib
+from dataclasses import dataclass
 from typing import Dict
 
 PATHS: Dict[str, pathlib.Path] = {
@@ -17,12 +18,20 @@ CONFIG: config.ConfigParser = config.ConfigParser()
 CONFIG.read(_get_config())
 
 DATABASE: config.SectionProxy = CONFIG["DATABASE"]
-COMMANDS: Dict[str, config.SectionProxy] = {
-    "BAN": CONFIG["BAN"],
-    "KICK": CONFIG["KICK"],
-    "MUTE": CONFIG["MUTE"],
-    "WARN": CONFIG["WARN"],
-    "USER": CONFIG["USER"],
+
+
+@dataclass
+class CommandEntry:
+    collection: str = None
+    message: str = None
+
+
+COMMANDS: Dict[str, CommandEntry] = {
+    "BAN": CommandEntry(CONFIG["BAN"]["collection"], CONFIG["BAN"]["message"]),
+    "KICK": CommandEntry(CONFIG["KICK"]["collection"], CONFIG["KICK"]["message"]),
+    "MUTE": CommandEntry(CONFIG["MUTE"]["collection"], CONFIG["MUTE"]["message"]),
+    "WARN": CommandEntry(CONFIG["WARN"]["collection"], CONFIG["WARN"]["message"]),
+    "USER": CommandEntry(CONFIG["USER"]["collection"]),
 }
 ERRORS: Dict[str, config.SectionProxy] = {
     "CNF": CONFIG["CommandNotFound"],
