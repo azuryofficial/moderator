@@ -3,7 +3,8 @@ import logging
 import discord
 from discord.ext import commands
 
-from misc.embeds import ErrorEmbed
+from misc import ErrorEmbed, replace_placeholders
+from misc.config import ERRORS
 
 __all__: list[str] = ["Error"]
 
@@ -12,8 +13,9 @@ class Error(commands.Cog):
     @commands.Cog.listener()
     async def on_command_error(self, ctx: commands.Context, error) -> None:
         if isinstance(error, commands.CommandNotFound):
-            logging.error(f"The {error.args[0].split()[1]} command does not exist")
-            await ctx.send(embed=ErrorEmbed("This command does not exist."))
+            replacement = {"{command}": error.args[0].split()[1]}
+            logging.error(replace_placeholders(ERRORS["CNF"].log, replacement))
+            await ctx.send(embed=ErrorEmbed(replace_placeholders(ERRORS["CNF"].embed, replacement)))
 
         elif isinstance(error, commands.MissingRequiredArgument):
             logging.info(f"The \"{ctx.command}\" command requires the  missing argument \"{error.args[0].split()[0]}\"")
