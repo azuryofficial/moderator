@@ -15,8 +15,7 @@ class Error(commands.Cog):
 
         elif isinstance(error, commands.MissingRequiredArgument):
             logging.info(f"The \"{ctx.command}\" command requires the  missing argument \"{error.args[0].split()[0]}\"")
-            if "member" in error.args[0]:
-                await ctx.send(embed=ErrorEmbed("You have to specify a member."))
+            await ctx.send(embed=ErrorEmbed(f"You have to specify a {error.args[0].split()[0]}."))
 
         elif isinstance(error, commands.RoleNotFound):
             logging.error(f"The role {error.args[0].split()[1]} did not exist and was automatically created")
