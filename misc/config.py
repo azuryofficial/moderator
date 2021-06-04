@@ -24,3 +24,9 @@ COMMANDS: Dict[str, config.SectionProxy] = {
     "WARN": CONFIG["WARN"],
     "USER": CONFIG["USER"],
 }
+ERRORS: Dict[str, config.SectionProxy] = {
+    "CNF": CONFIG["CommandNotFound"],
+    "MRA": CONFIG["MissingRequiredArgument"],
+    "RNF": CONFIG["RoleNotFound"],
+    "MNF": CONFIG["MemberNotFound"],
+}
