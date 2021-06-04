@@ -4,7 +4,7 @@ import discord
 import motor.motor_asyncio as motor
 from discord.ext import commands
 
-from Cogs import _warn
+from Cogs.warn import _warn
 from misc import ErrorEmbed, CommandEmbed, add_word, delete_word, replace_placeholders
 from misc.config import COMMANDS
 
