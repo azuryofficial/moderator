@@ -19,7 +19,7 @@ class Error(commands.Cog):
 
         elif isinstance(error, commands.MissingRequiredArgument):
             replacement: dict = {"{command}": str(ctx.command), "{argument}": error.args[0].split()[0]}
-            logging.info(replace_placeholders(ERRORS["MRA"].log, replacement))
+            logging.warning(replace_placeholders(ERRORS["MRA"].log, replacement))
             await ctx.send(embed=ErrorEmbed(replace_placeholders(ERRORS["MRA"].embed, replacement)))
 
         elif isinstance(error, commands.RoleNotFound):
