@@ -33,9 +33,17 @@ COMMANDS: Dict[str, CommandEntry] = {
     "WARN": CommandEntry(CONFIG["WARN"]["collection"], CONFIG["WARN"]["message"]),
     "USER": CommandEntry(CONFIG["USER"]["collection"]),
 }
-ERRORS: Dict[str, config.SectionProxy] = {
-    "CNF": CONFIG["CommandNotFound"],
-    "MRA": CONFIG["MissingRequiredArgument"],
-    "RNF": CONFIG["RoleNotFound"],
-    "MNF": CONFIG["MemberNotFound"],
+
+
+@dataclass
+class ErrorEntry:
+    log: str
+    embed: str
+
+
+ERRORS: Dict[str, ErrorEntry] = {
+    "CNF": ErrorEntry(CONFIG["CommandNotFound"]["log"], CONFIG["CommandNotFound"]["embed"]),
+    "MRA": ErrorEntry(CONFIG["MissingRequiredArgument"]["log"], CONFIG["MissingRequiredArgument"]["embed"]),
+    "RNF": ErrorEntry(CONFIG["RoleNotFound"]["log"], CONFIG["RoleNotFound"]["embed"]),
+    "MNF": ErrorEntry(CONFIG["MemberNotFound"]["log"], CONFIG["MemberNotFound"]["embed"]),
 }
