@@ -38,7 +38,7 @@ COMMANDS: Dict[str, CommandEntry] = {
 @dataclass
 class ErrorEntry:
     log: str
-    embed: str
+    embed: str = None
 
 
 ERRORS: Dict[str, ErrorEntry] = {
