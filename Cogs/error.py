@@ -18,8 +18,9 @@ class Error(commands.Cog):
             await ctx.send(embed=ErrorEmbed(replace_placeholders(ERRORS["CNF"].embed, replacement)))
 
         elif isinstance(error, commands.MissingRequiredArgument):
-            logging.info(f"The \"{ctx.command}\" command requires the  missing argument \"{error.args[0].split()[0]}\"")
-            await ctx.send(embed=ErrorEmbed(f"You have to specify a {error.args[0].split()[0]}."))
+            replacement: dict = {"{command}": str(ctx.command), "{argument}": error.args[0].split()[0]}
+            logging.info(replace_placeholders(ERRORS["MRA"].log, replacement))
+            await ctx.send(embed=ErrorEmbed(replace_placeholders(ERRORS["MRA"].embed, replacement)))
 
         elif isinstance(error, commands.RoleNotFound):
             logging.error(f"The role {error.args[0].split()[1]} did not exist and was automatically created")
