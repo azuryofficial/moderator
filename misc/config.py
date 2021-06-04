@@ -16,7 +16,7 @@ def _get_config() -> str:
 CONFIG: config.ConfigParser = config.ConfigParser()
 CONFIG.read(_get_config())
 
-DATABASE: config.SectionProxy = CONFIG["Database"]
+DATABASE: config.SectionProxy = CONFIG["DATABASE"]
 COMMANDS: Dict[str, config.SectionProxy] = {
     "BAN": CONFIG["BAN"],
     "KICK": CONFIG["KICK"],
