@@ -15,6 +15,9 @@ CLIENT: motor.AsyncIOMotorClient = motor.AsyncIOMotorClient(DATABASE.address)
 async def setup(db: motor.AsyncIOMotorDatabase) -> None:
     collections: list[str] = [COMMANDS[command].collection for command in COMMANDS]
     for collection in collections:
+        if collection is None:
+            continue
+
         try:
             await db.create_collection(collection)
         except pymongo.CollectionInvalid:
