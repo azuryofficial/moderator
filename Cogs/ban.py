@@ -19,7 +19,7 @@ class Ban(commands.Cog):
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx: commands.Context, member: discord.Member, time: int, *, reason: str = None) -> None:
         await member.ban(reason=reason)
-        replacement: dict = {"{member}": str(member), "{mention}": member.mention}
+        replacement: dict = {"{member}": member.mention}
         await ctx.send(embed=CommandEmbed(replace_placeholders(COMMANDS["BAN"].title, replacement),
                                           replace_placeholders(COMMANDS["BAN"].description, replacement),
                                           member))
@@ -35,7 +35,7 @@ class Ban(commands.Cog):
         for user in banned_user:
             if (user.user.name, user.user.discriminator) == (*member.split("#"),):
                 await user.unban()
-                replacement: dict = {"{member}": str(user), "{mention}": user.mention}
+                replacement: dict = {"{member}": user.mention}
                 await ctx.send(embed=CommandEmbed(replace_placeholders(COMMANDS["UNBAN"].title, replacement),
                                                   replace_placeholders(COMMANDS["UNBAN"].description, replacement),
                                                   user))
