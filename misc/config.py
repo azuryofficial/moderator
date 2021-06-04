@@ -20,7 +20,7 @@ def _get_config() -> str:
 CONFIG: config.ConfigParser = config.ConfigParser()
 CONFIG.read(_get_config())
 
-DATABASE: namedtuple = namedtuple("DATABASE", ["address"])(CONFIG["DATABASE"]["address"])
+DATABASE: namedtuple = namedtuple("DATABASE", ["address"])(CONFIG["GENERAL"]["address"])
 
 
 @dataclass
