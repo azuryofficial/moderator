@@ -21,4 +21,4 @@ class Kick(commands.Cog):
         await ctx.send(embed=CommandEmbed(replace_placeholders(COMMANDS["KICK"].title, replacement),
                                           replace_placeholders(COMMANDS["KICK"].description, replacement),
                                           member))
-        await add_entry(self.db, "kicks", ctx.message.author, member, reason)
+        await add_entry(self.db, COMMANDS["KICK"].collection, ctx.message.author, member, reason)
