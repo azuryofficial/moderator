@@ -1,8 +1,8 @@
-from .ban import Ban
-from .censor import Censor
-from .error import Error
-from .kick import Kick
-from .mute import Mute
-from .setup import Setup
-from .user import User
-from .warn import Warn, _warn
+from .ban import *
+from .censor import *
+from .error import *
+from .kick import *
+from .mute import *
+from .setup import *
+from .user import *
+from .warn import *
