@@ -2,8 +2,8 @@ import discord
 import motor.motor_asyncio as motor
 from discord.ext import commands
 
-from misc import add_entry
-from misc.embeds import CommandEmbed
+from misc import CommandEmbed, add_entry, replace_placeholders
+from misc.config import COMMANDS
 
 __all__: list[str] = ["Kick"]
 
@@ -17,5 +17,8 @@ class Kick(commands.Cog):
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx: commands.Context, member: discord.Member, *, reason: str = None) -> None:
         await member.kick(reason=reason)
-        await ctx.send(embed=CommandEmbed(":door: Kicked", member))
+        replacement: dict = {"{member}": str(member)}
+        await ctx.send(embed=CommandEmbed(replace_placeholders(COMMANDS["KICK"].title, replacement),
+                                          replace_placeholders(COMMANDS["KICK"].description, replacement),
+                                          member))
         await add_entry(self.db, "kicks", ctx.message.author, member, reason)
