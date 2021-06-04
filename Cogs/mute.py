@@ -24,6 +24,6 @@ class Mute(commands.Cog):
                                           replace_placeholders(COMMANDS["MUTE"].description, replacement),
                                           member))
         await member.add_roles(role, reason=reason)
-        await add_entry(self.db, "mutes", ctx.message.author, member, reason)
+        await add_entry(self.db, COMMANDS["MUTE"].collection, ctx.message.author, member, reason)
         await asyncio.sleep(delay * 60)
         await member.remove_roles(role)
