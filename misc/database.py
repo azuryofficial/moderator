@@ -7,6 +7,8 @@ import pymongo.errors as pymongo
 
 from misc.config import DATABASE, COMMANDS
 
+__all__: list[str] = ["CLIENT", "setup", "add_entry", "add_user", "add_word", "delete_word"]
+
 CLIENT: motor.AsyncIOMotorClient = motor.AsyncIOMotorClient(DATABASE.address)
 
 
