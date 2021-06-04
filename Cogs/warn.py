@@ -13,7 +13,7 @@ __all__: list[str] = ["Warn", "_warn"]
 
 async def _warn(db: motor.AsyncIOMotorDatabase, author: Union[discord.Member, collections.namedtuple],
                 member: discord.Member, reason: str) -> None:
-    await add_entry(db, "warns", author, member, reason)
+    await add_entry(db, COMMANDS["WARN"].collection, author, member, reason)
 
 
 class Warn(commands.Cog):
