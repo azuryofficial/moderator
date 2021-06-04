@@ -4,8 +4,8 @@ import discord
 import motor.motor_asyncio as motor
 from discord.ext import commands
 
-from misc import add_entry
-from misc.embeds import CommandEmbed
+from misc import CommandEmbed, add_entry, replace_placeholders
+from misc.config import COMMANDS
 
 __all__: list[str] = ["Mute"]
 
@@ -19,7 +19,10 @@ class Mute(commands.Cog):
     @commands.has_permissions(kick_members=True)
     async def mute(self, ctx: commands.Context, member: discord.Member, delay: int = 1, *, reason: str = None) -> None:
         role: discord.Role = await commands.RoleConverter().convert(ctx, "Muted")
-        await ctx.send(embed=CommandEmbed(":mute: Muted", member))
+        replacement: dict = {"{member}": member.mention, "{time}": delay}
+        await ctx.send(embed=CommandEmbed(replace_placeholders(COMMANDS["MUTE"].title, replacement),
+                                          replace_placeholders(COMMANDS["MUTE"].description, replacement),
+                                          member))
         await member.add_roles(role, reason=reason)
         await add_entry(self.db, "mutes", ctx.message.author, member, reason)
         await asyncio.sleep(delay * 60)
