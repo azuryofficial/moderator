@@ -17,3 +17,10 @@ CONFIG: config.ConfigParser = config.ConfigParser()
 CONFIG.read(_get_config())
 
 DATABASE: config.SectionProxy = CONFIG["Database"]
+COMMANDS: Dict[str, config.SectionProxy] = {
+    "BAN": CONFIG["BAN"],
+    "KICK": CONFIG["KICK"],
+    "MUTE": CONFIG["MUTE"],
+    "WARN": CONFIG["WARN"],
+    "USER": CONFIG["USER"],
+}
