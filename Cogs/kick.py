@@ -5,6 +5,8 @@ from discord.ext import commands
 from misc import add_entry
 from misc.embeds import CommandEmbed
 
+__all__: list[str] = ["Kick"]
+
 
 class Kick(commands.Cog):
     def __init__(self, bot: commands.Bot, db: motor.AsyncIOMotorDatabase) -> None:

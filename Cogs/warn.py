@@ -8,6 +8,8 @@ from discord.ext import commands
 from misc import add_entry
 from misc.embeds import CommandEmbed
 
+__all__: list[str] = ["Warn", "_warn"]
+
 
 async def _warn(db: motor.AsyncIOMotorDatabase, author: Union[discord.Member, collections.namedtuple],
                 member: discord.Member, reason: str) -> None:

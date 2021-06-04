@@ -5,6 +5,8 @@ from discord.ext import commands
 
 from misc.embeds import ErrorEmbed
 
+__all__: list[str] = ["Error"]
+
 
 class Error(commands.Cog):
     @commands.Cog.listener()

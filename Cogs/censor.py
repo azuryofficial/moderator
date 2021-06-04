@@ -1,10 +1,13 @@
 import collections
+
 import discord
 import motor.motor_asyncio as motor
 from discord.ext import commands
 
-from misc import ErrorEmbed, CommandEmbed, add_word, delete_word
 from Cogs.warn import _warn
+from misc import ErrorEmbed, CommandEmbed, add_word, delete_word
+
+__all__: list[str] = ["Censor"]
 
 
 class Censor(commands.Cog):
