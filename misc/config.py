@@ -32,6 +32,7 @@ COMMANDS: Dict[str, CommandEntry] = {
     "KICK": CommandEntry(CONFIG["KICK"]["collection"], CONFIG["KICK"]["message"]),
     "MUTE": CommandEntry(CONFIG["MUTE"]["collection"], CONFIG["MUTE"]["message"]),
     "WARN": CommandEntry(CONFIG["WARN"]["collection"], CONFIG["WARN"]["message"]),
+    "CENSOR": CommandEntry(CONFIG["CENSOR"]["collection"]),
     "USER": CommandEntry(CONFIG["USER"]["collection"]),
 }
 
