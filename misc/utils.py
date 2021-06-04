@@ -3,6 +3,8 @@ from typing import Type
 import motor.motor_asyncio as motor
 from discord.ext import commands
 
+__all__: list[str] = ["add_cogs"]
+
 
 def add_cogs(db: motor.AsyncIOMotorDatabase, bot: commands.Bot, cogs: list[Type[commands.Cog]]) -> None:
     for cog in cogs:
