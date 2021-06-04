@@ -1,5 +1,7 @@
 import discord
 
+__all__: list[str] = ["CommandEmbed", "ErrorEmbed"]
+
 
 class Embed(discord.Embed):
     def __init__(self, title: str, description: str, color: discord.Color, member: discord.Member = None) -> None:
