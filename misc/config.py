@@ -8,5 +8,10 @@ PATHS: Dict[str, pathlib.Path] = {
     "config": pathlib.Path.home().joinpath(pathlib.Path(".config/AzuryModerator/config.ini")),
 }
 
+
+def _get_config() -> str:
+    return str([PATHS[path] for path in PATHS if PATHS[path].exists()][0].absolute())
+
+
 CONFIG: config.ConfigParser = config.ConfigParser()
-CONFIG.read("./config.ini")
+CONFIG.read(_get_config())
