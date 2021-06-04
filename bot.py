@@ -3,7 +3,7 @@ import logging
 from discord.ext import commands
 from dotenv import dotenv_values
 
-from Cogs import Kick, Ban, Mute, Error, Warn, User, Setup, Censor
+from Cogs import *
 from misc import CLIENT, add_cogs
 
 bot: commands.Bot = commands.Bot("m.")
