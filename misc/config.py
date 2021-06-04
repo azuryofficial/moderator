@@ -1,5 +1,6 @@
 import configparser as config
 import pathlib
+from collections import namedtuple
 from dataclasses import dataclass
 from typing import Dict
 
@@ -17,7 +18,7 @@ def _get_config() -> str:
 CONFIG: config.ConfigParser = config.ConfigParser()
 CONFIG.read(_get_config())
 
-DATABASE: config.SectionProxy = CONFIG["DATABASE"]
+DATABASE: namedtuple = namedtuple("DATABASE", ["address"])(CONFIG["DATABASE"]["address"])
 
 
 @dataclass
