@@ -13,7 +13,7 @@ class Error(commands.Cog):
     @commands.Cog.listener()
     async def on_command_error(self, ctx: commands.Context, error) -> None:
         if isinstance(error, commands.CommandNotFound):
-            replacement = {"{command}": error.args[0].split()[1]}
+            replacement: dict = {"{command}": error.args[0].split()[1]}
             logging.error(replace_placeholders(ERRORS["CNF"].log, replacement))
             await ctx.send(embed=ErrorEmbed(replace_placeholders(ERRORS["CNF"].embed, replacement)))
 
