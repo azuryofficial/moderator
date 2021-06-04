@@ -5,8 +5,8 @@ import discord
 import motor.motor_asyncio as motor
 from discord.ext import commands
 
-from misc import add_entry
-from misc.embeds import CommandEmbed
+from misc import CommandEmbed, add_entry, replace_placeholders
+from misc.config import COMMANDS
 
 __all__: list[str] = ["Warn", "_warn"]
 
@@ -24,5 +24,8 @@ class Warn(commands.Cog):
     @commands.command()
     @commands.has_permissions(kick_members=True)
     async def warn(self, ctx: commands.Context, member: discord.Member, *, reason: str = None) -> None:
-        await ctx.send(embed=CommandEmbed(":warning: Warned", member))
+        replacement: dict = {"{member}": member.mention, "{reason}": reason}
+        await ctx.send(embed=CommandEmbed(replace_placeholders(COMMANDS["WARN"].title, replacement),
+                                          replace_placeholders(COMMANDS["WARN"].description, replacement),
+                                          member))
         await _warn(self.db, ctx.message.author, member, reason)
