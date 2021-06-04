@@ -13,7 +13,8 @@ CLIENT: motor.AsyncIOMotorClient = motor.AsyncIOMotorClient(DATABASE.address)
 
 
 async def setup(db: motor.AsyncIOMotorDatabase) -> None:
-    for collection in ["users", "bans", "kicks", "mutes", "warns", "censored"]:
+    collections: list[str] = [COMMANDS[command].collection for command in COMMANDS]
+    for collection in collections:
         try:
             await db.create_collection(collection)
         except pymongo.CollectionInvalid:
