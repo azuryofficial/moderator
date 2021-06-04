@@ -35,5 +35,8 @@ class Ban(commands.Cog):
         for user in banned_user:
             if (user.user.name, user.user.discriminator) == (*member.split("#"),):
                 await user.unban()
-                await ctx.send(embed=CommandEmbed(":wave: Unbanned", user))
+                replacement: dict = {"{member}": str(user), "{mention}": user.mention}
+                await ctx.send(embed=CommandEmbed(replace_placeholders(COMMANDS["UNBAN"].title, replacement),
+                                                  replace_placeholders(COMMANDS["UNBAN"].description, replacement),
+                                                  user))
                 break
