@@ -21,8 +21,8 @@ class Embed(discord.Embed):
 
 
 class CommandEmbed(Embed):
-    def __init__(self, title: str, member: discord.Member) -> None:
-        super().__init__(f"{title}", "", discord.Color.green(), member)
+    def __init__(self, title: str, description: str, member: discord.Member) -> None:
+        super().__init__(f"{title}", description, discord.Color.green(), member)
 
 
 class ErrorEmbed(Embed):
