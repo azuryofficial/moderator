@@ -26,14 +26,15 @@ DATABASE: namedtuple = namedtuple("DATABASE", ["address"])(CONFIG["GENERAL"]["ad
 @dataclass
 class CommandEntry:
     collection: str = None
-    message: str = None
+    title: str = None
+    description: str = None
 
 
 COMMANDS: Dict[str, CommandEntry] = {
-    "BAN": CommandEntry(CONFIG["BAN"]["collection"], CONFIG["BAN"]["message"]),
-    "KICK": CommandEntry(CONFIG["KICK"]["collection"], CONFIG["KICK"]["message"]),
-    "MUTE": CommandEntry(CONFIG["MUTE"]["collection"], CONFIG["MUTE"]["message"]),
-    "WARN": CommandEntry(CONFIG["WARN"]["collection"], CONFIG["WARN"]["message"]),
+    "BAN": CommandEntry(CONFIG["BAN"]["collection"], CONFIG["BAN"]["title"], CONFIG["BAN"]["description"]),
+    "KICK": CommandEntry(CONFIG["KICK"]["collection"], CONFIG["KICK"]["title"], CONFIG["KICK"]["description"]),
+    "MUTE": CommandEntry(CONFIG["MUTE"]["collection"], CONFIG["MUTE"]["title"], CONFIG["MUTE"]["description"]),
+    "WARN": CommandEntry(CONFIG["WARN"]["collection"], CONFIG["WARN"]["title"], CONFIG["WARN"]["description"]),
     "CENSOR": CommandEntry(CONFIG["CENSOR"]["collection"]),
     "USER": CommandEntry(CONFIG["USER"]["collection"]),
 }
