@@ -4,6 +4,8 @@ from collections import namedtuple
 from dataclasses import dataclass
 from typing import Dict
 
+__all__: list[str] = ["DATABASE", "COMMANDS", "ERRORS"]
+
 PATHS: Dict[str, pathlib.Path] = {
     "project": pathlib.Path("./config.ini"),
     "home": pathlib.Path.home().joinpath(pathlib.Path(".AzuryModerator.ini")),
