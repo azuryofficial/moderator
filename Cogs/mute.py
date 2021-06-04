@@ -19,7 +19,7 @@ class Mute(commands.Cog):
     @commands.has_permissions(kick_members=True)
     async def mute(self, ctx: commands.Context, member: discord.Member, delay: int = 1, *, reason: str = None) -> None:
         role: discord.Role = await commands.RoleConverter().convert(ctx, "Muted")
-        replacement: dict = {"{member}": member.mention, "{time}": delay}
+        replacement: dict = {"{member}": member.mention, "{time}": delay, "{reason}": reason}
         await ctx.send(embed=CommandEmbed(replace_placeholders(COMMANDS["MUTE"].title, replacement),
                                           replace_placeholders(COMMANDS["MUTE"].description, replacement),
                                           member))
