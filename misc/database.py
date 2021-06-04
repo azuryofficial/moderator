@@ -4,9 +4,10 @@ from datetime import datetime
 import discord
 import motor.motor_asyncio as motor
 import pymongo.errors as pymongo
-from dotenv import dotenv_values
 
-CLIENT: motor.AsyncIOMotorClient = motor.AsyncIOMotorClient(dotenv_values(".env")["DB"])
+from misc.config import DATABASE
+
+CLIENT: motor.AsyncIOMotorClient = motor.AsyncIOMotorClient(DATABASE["address"])
 
 
 async def setup(db: motor.AsyncIOMotorDatabase) -> None:
