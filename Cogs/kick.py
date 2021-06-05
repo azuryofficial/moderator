@@ -8,7 +8,7 @@ from discord.ext import commands
 from misc import CommandEmbed, add_entry, replace_placeholders
 from misc.config import COMMANDS
 
-__all__: list[str] = ["Kick"]
+__all__: list[str] = ["Kick", "_kick"]
 
 
 async def _kick(db: motor.AsyncIOMotorDatabase, author: Union[discord.Member, collections.namedtuple],
