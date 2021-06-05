@@ -29,13 +29,15 @@ class CommandEntry:
     title: str = None
     description: str = None
     reason: str = None
+    threshold: int = None
 
 
 COMMANDS: Dict[str, CommandEntry] = {
     "BAN": CommandEntry(CONFIG["BAN"]["collection"], CONFIG["BAN"]["title"], CONFIG["BAN"]["description"]),
     "UNBAN": CommandEntry(title=CONFIG["UNBAN"]["title"], description=CONFIG["UNBAN"]["description"]),
     "KICK": CommandEntry(CONFIG["KICK"]["collection"], CONFIG["KICK"]["title"], CONFIG["KICK"]["description"]),
-    "MUTE": CommandEntry(CONFIG["MUTE"]["collection"], CONFIG["MUTE"]["title"], CONFIG["MUTE"]["description"]),
+    "MUTE": CommandEntry(CONFIG["MUTE"]["collection"], CONFIG["MUTE"]["title"], CONFIG["MUTE"]["description"],
+                         threshold=int(CONFIG["MUTE"]["threshold"])),
     "WARN": CommandEntry(CONFIG["WARN"]["collection"], CONFIG["WARN"]["title"], CONFIG["WARN"]["description"]),
     "CENSOR": CommandEntry(CONFIG["CENSOR"]["collection"], CONFIG["CENSOR"]["title"], CONFIG["CENSOR"]["description"],
                            CONFIG["CENSOR"]["reason"]),
