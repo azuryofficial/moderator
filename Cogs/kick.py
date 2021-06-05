@@ -17,7 +17,7 @@ class Kick(commands.Cog):
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx: commands.Context, member: discord.Member, *, reason: str = None) -> None:
         await member.kick(reason=reason)
-        replacement: dict = {"{member}": member.mention, "{reason}": reason}
+        replacement: dict = {"{member}": member.mention, "{reason}": reason or ""}
         await ctx.send(embed=CommandEmbed(replace_placeholders(COMMANDS["KICK"].title, replacement),
                                           replace_placeholders(COMMANDS["KICK"].description, replacement),
                                           member))

@@ -19,7 +19,7 @@ class Ban(commands.Cog):
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx: commands.Context, member: discord.Member, time: int, *, reason: str = None) -> None:
         await member.ban(reason=reason)
-        replacement: dict = {"{member}": member.mention, "{reason}": reason, "{time}": time}
+        replacement: dict = {"{member}": member.mention, "{reason}": reason or "", "{time}": time}
         await ctx.send(embed=CommandEmbed(replace_placeholders(COMMANDS["BAN"].title, replacement),
                                           replace_placeholders(COMMANDS["BAN"].description, replacement),
                                           member))
