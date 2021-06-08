@@ -26,15 +26,15 @@ DATABASE: namedtuple = namedtuple("DATABASE", ["address"])(CONFIG["GENERAL"]["ad
 @dataclass
 class CommandEntry:
     collection: str = None
-    title: str = None
-    description: str = None
-    reason: str = None
-    threshold: int = None
+    title: str = ""
+    description: str = ""
+    reason: str = ""
+    threshold: int = 5
 
 
 @dataclass
 class UserInfo:
-    collection: str = ""
+    collection: str = None
     title: str = ""
     description: str = ""
     joined: str = ""
@@ -62,8 +62,8 @@ COMMANDS: Dict[str, Union[CommandEntry, UserInfo]] = {
 
 @dataclass
 class ErrorEntry:
-    log: str
-    embed: str = None
+    log: str = ""
+    embed: str = ""
 
 
 ERRORS: Dict[str, ErrorEntry] = {
