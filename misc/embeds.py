@@ -1,6 +1,8 @@
 import discord
 
-__all__: list[str] = ["CommandEmbed", "ErrorEmbed"]
+from misc.config import COMMANDS
+
+__all__: list[str] = ["CommandEmbed", "ErrorEmbed", "UserEmbed"]
 
 
 class Embed(discord.Embed):
@@ -28,3 +30,42 @@ class CommandEmbed(Embed):
 class ErrorEmbed(Embed):
     def __init__(self, description: str) -> None:
         super().__init__(":x: Error", description, discord.Color.red())
+
+
+class UserEmbed(discord.Embed):
+    def __init__(self, member: discord.Member, **kwargs) -> None:
+        self.embed: dict = {
+            "author": {
+                "name": f"{member.name}#{member.discriminator}",
+                "icon_url": str(member.avatar_url),
+            },
+            "title": COMMANDS["USER"].title,
+            "description": COMMANDS["USER"].description,
+            "fields": [
+                {
+                    "name": COMMANDS["USER"].joined,
+                    "value": str(kwargs["joined"]),
+                },
+                {
+                    "name": COMMANDS["USER"].bans,
+                    "value": str(kwargs["bans"]),
+                },
+                {
+                    "name": COMMANDS["USER"].kicks,
+                    "value": str(kwargs["kicks"]),
+                },
+                {
+                    "name": COMMANDS["USER"].mutes,
+                    "value": str(kwargs["mutes"]),
+                },
+                {
+                    "name": COMMANDS["USER"].warns,
+                    "value": str(kwargs["warns"]),
+                },
+            ],
+            "color": discord.Color.blurple().value,
+            "type": "rich",
+        }
+
+    def to_dict(self):
+        return self.embed
