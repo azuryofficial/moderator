@@ -2,7 +2,7 @@ import configparser as config
 import pathlib
 from collections import namedtuple
 from dataclasses import dataclass
-from typing import Dict
+from typing import Dict, Union
 
 __all__: list[str] = ["DATABASE", "COMMANDS", "ERRORS"]
 
@@ -32,7 +32,20 @@ class CommandEntry:
     threshold: int = None
 
 
-COMMANDS: Dict[str, CommandEntry] = {
+@dataclass
+class UserInfo:
+    collection: str = ""
+    title: str = ""
+    description: str = ""
+    joined: str = ""
+    format: str = ""
+    bans: str = ""
+    kicks: str = ""
+    mutes: str = ""
+    warns: str = ""
+
+
+COMMANDS: Dict[str, Union[CommandEntry, UserInfo]] = {
     "BAN": CommandEntry(CONFIG["BAN"]["collection"], CONFIG["BAN"]["title"], CONFIG["BAN"]["description"]),
     "UNBAN": CommandEntry(title=CONFIG["UNBAN"]["title"], description=CONFIG["UNBAN"]["description"]),
     "KICK": CommandEntry(CONFIG["KICK"]["collection"], CONFIG["KICK"]["title"], CONFIG["KICK"]["description"]),
@@ -41,7 +54,9 @@ COMMANDS: Dict[str, CommandEntry] = {
                          threshold=int(CONFIG["WARN"]["threshold"])),
     "CENSOR": CommandEntry(CONFIG["CENSOR"]["collection"], CONFIG["CENSOR"]["title"], CONFIG["CENSOR"]["description"],
                            CONFIG["CENSOR"]["reason"]),
-    "USER": CommandEntry(CONFIG["USER"]["collection"]),
+    "USER": UserInfo(CONFIG["USER"]["collection"], CONFIG["USER"]["info_title"], CONFIG["USER"]["info_description"],
+                     CONFIG["USER"]["info_joined"], CONFIG["USER"]["info_joined_format"], CONFIG["USER"]["info_bans"],
+                     CONFIG["USER"]["info_kicks"], CONFIG["USER"]["info_mutes"], CONFIG["USER"]["info_warns"]),
 }
 
 
