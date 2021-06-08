@@ -2,6 +2,7 @@ import collections
 from typing import Union
 
 import discord
+import discord.errors
 import motor.motor_asyncio as motor
 from discord.ext import commands
 
@@ -13,7 +14,10 @@ __all__: list[str] = ["Kick", "_kick"]
 
 async def _kick(db: motor.AsyncIOMotorDatabase, author: Union[discord.Member, collections.namedtuple],
                 member: discord.Member, reason: str) -> None:
-    await member.kick(reason=reason)
+    try:
+        await member.kick(reason=reason)
+    except discord.errors.Forbidden:
+        pass
     await add_entry(db, COMMANDS["KICK"].collection, author, member, reason)
 
 
