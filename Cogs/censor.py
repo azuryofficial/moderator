@@ -35,7 +35,7 @@ class Censor(commands.Cog):
             if word["_id"] in message.content.lower():
                 await _warn(self.db, collections.namedtuple("Author", "id")(self.bot.user.id), message.author,
                             COMMANDS["CENSOR"].reason)
-                replacement: dict = {"{member}": message.author.mention, "{reason}": COMMANDS["CENSOR"].reason or ""}
+                replacement: dict = {"{member}": message.author.mention, "{reason}": COMMANDS["CENSOR"].reason}
                 await message.reply(embed=CommandEmbed(replace_placeholders(COMMANDS["CENSOR"].title, replacement),
                                                        replace_placeholders(COMMANDS["CENSOR"].description,
                                                                             replacement),
