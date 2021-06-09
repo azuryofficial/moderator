@@ -16,13 +16,13 @@ class Censor(commands.Cog):
         self.bot: commands.Bot = bot
         self.db: motor.AsyncIOMotorDatabase = db
 
-    @commands.command()
+    @commands.command(aliases=["disallow", "forbid", "c"])
     @commands.has_permissions(kick_members=True)
     async def censor(self, ctx: commands.Context, *, word: str) -> None:
         if not await add_word(self.db, word):
             await ctx.send(embed=ErrorEmbed("The word is already censored."))
 
-    @commands.command()
+    @commands.command(aliases=["allow", "p", "uncensor", "uc"])
     @commands.has_permissions(kick_members=True)
     async def permit(self, ctx: commands.Context, *, word: str) -> None:
         if not await delete_word(self.db, word):

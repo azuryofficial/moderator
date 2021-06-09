@@ -15,7 +15,7 @@ class Ban(commands.Cog):
         self.bot: commands.Bot = bot
         self.db: motor.AsyncIOMotorDatabase = db
 
-    @commands.command()
+    @commands.command(aliases=["b"])
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx: commands.Context, member: discord.Member, time: int, *, reason: str = None) -> None:
         await member.ban(reason=reason)
@@ -27,7 +27,7 @@ class Ban(commands.Cog):
         await asyncio.sleep(86400 * time)
         await member.unban()
 
-    @commands.command()
+    @commands.command(aliases=["ub"])
     @commands.has_permissions(ban_members=True)
     async def unban(self, ctx: commands.Context, *, member: str) -> None:
         banned_user: list[discord.Member] = await ctx.guild.bans()

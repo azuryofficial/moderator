@@ -26,7 +26,7 @@ class Kick(commands.Cog):
         self.bot: commands.Bot = bot
         self.db: motor.AsyncIOMotorDatabase = db
 
-    @commands.command()
+    @commands.command(aliases=["k"])
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx: commands.Context, member: discord.Member, *, reason: str = None) -> None:
         replacement: dict = {"{member}": member.mention, "{reason}": reason or ""}

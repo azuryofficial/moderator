@@ -15,7 +15,7 @@ class Mute(commands.Cog):
         self.bot: commands.Bot = bot
         self.db: motor.AsyncIOMotorDatabase = db
 
-    @commands.command()
+    @commands.command(aliases=["m"])
     @commands.has_permissions(kick_members=True)
     async def mute(self, ctx: commands.Context, member: discord.Member, delay: int = 1, *, reason: str = None) -> None:
         role: discord.Role = await commands.RoleConverter().convert(ctx, "Muted")

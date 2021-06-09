@@ -16,7 +16,7 @@ class User(commands.Cog):
         self.bot: commands.Bot = bot
         self.db: motor.AsyncIOMotorDatabase = db
 
-    @commands.command()
+    @commands.command(aliases=["userinfo", "uinfo", "userlog", "ulog"])
     async def user_info(self, ctx: commands.Context, member: discord.Member = None) -> None:
         if not member:
             member: discord.Member = ctx.author
