@@ -53,6 +53,7 @@ async def add_word(db: motor.AsyncIOMotorDatabase, word: str) -> bool:
         await db[COMMANDS["CENSOR"].collection].insert_one({"_id": word.lower()})
     except pymongo.DuplicateKeyError:
         return False
+
     return True
 
 
@@ -60,4 +61,5 @@ async def delete_word(db: motor.AsyncIOMotorDatabase, word: str) -> bool:
     if await db[COMMANDS["CENSOR"].collection].find_one({"_id": word.lower()}):
         await db[COMMANDS["CENSOR"].collection].delete_one({"_id": word.lower()})
         return True
+
     return False
