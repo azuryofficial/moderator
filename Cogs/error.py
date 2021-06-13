@@ -3,7 +3,10 @@ import logging
 import discord
 from discord.ext import commands
 
-from misc import ErrorEmbed, replace_placeholders
+from misc import (
+    ErrorEmbed,
+    replace_placeholders,
+)
 from misc.config import ERRORS
 
 __all__: list[str] = ["Error"]
