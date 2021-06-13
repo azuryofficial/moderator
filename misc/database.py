@@ -5,7 +5,10 @@ import discord
 import motor.motor_asyncio as motor
 import pymongo.errors as pymongo
 
-from misc.config import DATABASE, COMMANDS
+from misc.config import (
+    DATABASE,
+    COMMANDS,
+)
 
 __all__: list[str] = ["CLIENT", "setup", "add_entry", "add_user", "add_word", "delete_word"]
 
