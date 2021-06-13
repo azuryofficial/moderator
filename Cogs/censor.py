@@ -30,6 +30,8 @@ class Censor(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message) -> None:
+        if message.content.startswith("m."):
+            return None
         censored_words: collections.AsyncIterable = self.db[COMMANDS["CENSOR"].collection].find()
         async for word in censored_words:
             if word["_id"] in message.content.lower():
