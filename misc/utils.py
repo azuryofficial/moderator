@@ -14,4 +14,5 @@ def add_cogs(db: motor.AsyncIOMotorDatabase, bot: commands.Bot, cogs: list[Type[
 def replace_placeholders(string: str, replacements: dict) -> str:
     for original, replacement in replacements.items():
         string = string.replace(original, replacement)
+
     return string
