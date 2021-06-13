@@ -46,17 +46,48 @@ class UserInfo:
 
 
 COMMANDS: Dict[str, Union[CommandEntry, UserInfo]] = {
-    "BAN": CommandEntry(CONFIG["BAN"]["collection"], CONFIG["BAN"]["title"], CONFIG["BAN"]["description"]),
-    "UNBAN": CommandEntry(title=CONFIG["UNBAN"]["title"], description=CONFIG["UNBAN"]["description"]),
-    "KICK": CommandEntry(CONFIG["KICK"]["collection"], CONFIG["KICK"]["title"], CONFIG["KICK"]["description"]),
-    "MUTE": CommandEntry(CONFIG["MUTE"]["collection"], CONFIG["MUTE"]["title"], CONFIG["MUTE"]["description"]),
-    "WARN": CommandEntry(CONFIG["WARN"]["collection"], CONFIG["WARN"]["title"], CONFIG["WARN"]["description"],
-                         threshold=int(CONFIG["WARN"]["threshold"])),
-    "CENSOR": CommandEntry(CONFIG["CENSOR"]["collection"], CONFIG["CENSOR"]["title"], CONFIG["CENSOR"]["description"],
-                           CONFIG["CENSOR"]["reason"]),
-    "USER": UserInfo(CONFIG["USER"]["collection"], CONFIG["USER"]["info_title"], CONFIG["USER"]["info_description"],
-                     CONFIG["USER"]["info_joined"], CONFIG["USER"]["info_joined_format"], CONFIG["USER"]["info_bans"],
-                     CONFIG["USER"]["info_kicks"], CONFIG["USER"]["info_mutes"], CONFIG["USER"]["info_warns"]),
+    "BAN": CommandEntry(
+        CONFIG["BAN"]["collection"],
+        CONFIG["BAN"]["title"],
+        CONFIG["BAN"]["description"],
+    ),
+    "UNBAN": CommandEntry(
+        title=CONFIG["UNBAN"]["title"],
+        description=CONFIG["UNBAN"]["description"],
+    ),
+    "KICK": CommandEntry(
+        CONFIG["KICK"]["collection"],
+        CONFIG["KICK"]["title"],
+        CONFIG["KICK"]["description"],
+    ),
+    "MUTE": CommandEntry(
+        CONFIG["MUTE"]["collection"],
+        CONFIG["MUTE"]["title"],
+        CONFIG["MUTE"]["description"],
+    ),
+    "WARN": CommandEntry(
+        CONFIG["WARN"]["collection"],
+        CONFIG["WARN"]["title"],
+        CONFIG["WARN"]["description"],
+        threshold=int(CONFIG["WARN"]["threshold"]),
+    ),
+    "CENSOR": CommandEntry(
+        CONFIG["CENSOR"]["collection"],
+        CONFIG["CENSOR"]["title"],
+        CONFIG["CENSOR"]["description"],
+        CONFIG["CENSOR"]["reason"],
+    ),
+    "USER": UserInfo(
+        CONFIG["USER"]["collection"],
+        CONFIG["USER"]["info_title"],
+        CONFIG["USER"]["info_description"],
+        CONFIG["USER"]["info_joined"],
+        CONFIG["USER"]["info_joined_format"],
+        CONFIG["USER"]["info_bans"],
+        CONFIG["USER"]["info_kicks"],
+        CONFIG["USER"]["info_mutes"],
+        CONFIG["USER"]["info_warns"],
+    ),
 }
 
 
@@ -67,8 +98,20 @@ class ErrorEntry:
 
 
 ERRORS: Dict[str, ErrorEntry] = {
-    "CNF": ErrorEntry(CONFIG["CommandNotFound"]["log"], CONFIG["CommandNotFound"]["embed"]),
-    "MRA": ErrorEntry(CONFIG["MissingRequiredArgument"]["log"], CONFIG["MissingRequiredArgument"]["embed"]),
-    "RNF": ErrorEntry(CONFIG["RoleNotFound"]["log"], CONFIG["RoleNotFound"]["embed"]),
-    "MNF": ErrorEntry(CONFIG["MemberNotFound"]["log"], CONFIG["MemberNotFound"]["embed"]),
+    "CNF": ErrorEntry(
+        CONFIG["CommandNotFound"]["log"],
+        CONFIG["CommandNotFound"]["embed"],
+    ),
+    "MRA": ErrorEntry(
+        CONFIG["MissingRequiredArgument"]["log"],
+        CONFIG["MissingRequiredArgument"]["embed"],
+    ),
+    "RNF": ErrorEntry(
+        CONFIG["RoleNotFound"]["log"],
+        CONFIG["RoleNotFound"]["embed"],
+    ),
+    "MNF": ErrorEntry(
+        CONFIG["MemberNotFound"]["log"],
+        CONFIG["MemberNotFound"]["embed"],
+    ),
 }
