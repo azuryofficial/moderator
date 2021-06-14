@@ -1,10 +1,12 @@
 case $OSTYPE in
   msys*)
+    pip install --user pipenv
     pipenv install
-    python3 moderator.py
+    pipenv run python3 moderator.py
   ;;
   linux*)
+    pip install --user pipenv
     pipenv install
-    python moderator.py
+    pipenv run python moderator.py
   ;;
 esac
