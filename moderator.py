@@ -15,7 +15,7 @@ bot.remove_command("help")
 add_cogs(
     CLIENT.test,
     bot,
-    [Kick, Ban, Mute, Warn, User, Setup, Censor],
+    [Kick, Ban, Mute, Warn, User, Setup, Censor, Spam],
 )
 bot.add_cog(Error())
 
