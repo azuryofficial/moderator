@@ -1,6 +1,5 @@
 import logging
 
-from discord.ext import commands
 from dotenv import dotenv_values
 
 from Cogs import *
@@ -15,7 +14,7 @@ bot.remove_command("help")
 add_cogs(
     CLIENT.test,
     bot,
-    [Kick, Ban, Mute, Warn, User, Setup, Censor, Spam],
+    [Kick, Ban, Mute, Warn, User, Setup, Censor, Spam, Help],
 )
 bot.add_cog(Error())
 
