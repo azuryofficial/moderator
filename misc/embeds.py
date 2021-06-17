@@ -2,7 +2,7 @@ import discord
 
 from misc.config import COMMANDS
 
-__all__: list[str] = ["CommandEmbed", "ErrorEmbed", "UserEmbed"]
+__all__: list[str] = ["CommandEmbed", "ErrorEmbed", "UserEmbed", "HelpEmbed"]
 
 
 class Embed(discord.Embed):
