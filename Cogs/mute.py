@@ -21,17 +21,17 @@ class Mute(commands.Cog):
 
     @commands.command(aliases=["m"])
     @commands.has_permissions(kick_members=True)
-    async def mute(self, ctx: commands.Context, member: discord.Member, delay: int = 1, *, reason: str = None) -> None:
+    async def mute(self, ctx: commands.Context, member: discord.Member, time: int = 1, *, reason: str = None) -> None:
         role: discord.Role = await commands.RoleConverter().convert(ctx, "Muted")
         await member.add_roles(role, reason=reason)
         await add_entry(self.db, COMMANDS["MUTE"].collection, ctx.message.author, member, reason)
 
-        replacement: dict = {"{member}": member.mention, "{time}": delay, "{reason}": reason or ""}
+        replacement: dict = {"{member}": member.mention, "{time}": time, "{reason}": reason or ""}
         await ctx.send(embed=CommandEmbed(
             replace_placeholders(COMMANDS["MUTE"].title, replacement),
             replace_placeholders(COMMANDS["MUTE"].description, replacement),
             member,
         ))
 
-        await asyncio.sleep(delay * 60)
+        await asyncio.sleep(time * 60)
         await member.remove_roles(role)
