@@ -4,5 +4,6 @@ from .error import *
 from .kick import *
 from .mute import *
 from .setup import *
+from .spam import *
 from .user import *
 from .warn import *
