@@ -1,7 +1,10 @@
-import discord
 from typing import Optional
+
+import discord
 import motor.motor_asyncio as motor
 from discord.ext import commands
+
+from misc import COMMANDS
 
 __all__: list[str] = ["Spam"]
 
@@ -24,6 +27,6 @@ class Spam(commands.Cog):
                 last_message is not None and
                 last_message.author == message.author and
                 last_message.clean_content == message.clean_content and
-                (message.created_at - last_message.created_at).total_seconds() <= 2
+                (message.created_at - last_message.created_at).total_seconds() <= COMMANDS["SPAM"].threshold
         ):
             await message.delete()
