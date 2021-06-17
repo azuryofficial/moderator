@@ -88,6 +88,9 @@ COMMANDS: Dict[str, Union[CommandEntry, UserInfo]] = {
         CONFIG["USER"]["info_mutes"],
         CONFIG["USER"]["info_warns"],
     ),
+    "SPAM": CommandEntry(
+        threshold=int(CONFIG["SPAM"]["threshold"])
+    )
 }
 
 
