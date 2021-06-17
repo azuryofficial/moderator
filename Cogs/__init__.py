@@ -1,6 +1,7 @@
 from .ban import *
 from .censor import *
 from .error import *
+from .help import *
 from .kick import *
 from .mute import *
 from .setup import *
