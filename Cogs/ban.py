@@ -32,6 +32,9 @@ class Ban(commands.Cog):
             member,
         ))
 
+        if time <= 0:
+            return None
+
         await asyncio.sleep(86400 * time)
         await member.unban()
 
